@@ -16,12 +16,15 @@ class UserRepository implements IUserRepository {
 
         this.save(user);
     }
-    async deleteUser({ user_id }: { user_id: any; }): Promise<void> {
+
+    async deleteUser({ id }: { id: string }): Promise<void> {
+        await this.repository.delete(id);
+    }
+
+    async findUserById({ id }: { id: string; }): Promise<User> {
         throw new Error("Method not implemented.");
     }
-    async findUserById({ id }: { id: any; }): Promise<User> {
-        throw new Error("Method not implemented.");
-    }
+
     async findUserByEmail({ email }: { email: string; }): Promise<User> {
         return await this.repository.findOne({
             where: {
@@ -29,17 +32,19 @@ class UserRepository implements IUserRepository {
             }
         });
     }
+
     async listUser(): Promise<User[]> {
         return await this.repository.find({
             select: ['id', 'nick_name', 'email'],
             relations: ['role']
         });
     }
+    
     async save(user: User): Promise<void> {
         await this.repository.save(user);
     }
-    
-   
+
+
 }
 
 export { UserRepository };

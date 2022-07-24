@@ -9,9 +9,9 @@ interface IUserRepository {
         role_id 
     }: IRequestCreateUser): Promise<void>;
 
-    deleteUser({ user_id }): Promise<void>;
+    deleteUser({ id }: { id: string }): Promise<void>;
 
-    findUserById({ id: string }): Promise<User>;
+    findUserById({ id }: { id: string }): Promise<User>;
 
     findUserByEmail({ email: string }): Promise<User>;
 
