@@ -22,7 +22,11 @@ class UserRepository implements IUserRepository {
     }
 
     async findUserById({ id }: { id: string; }): Promise<User> {
-        throw new Error("Method not implemented.");
+        return await this.repository.findOne({
+            where: {
+                id
+            }
+        });
     }
 
     async findUserByEmail({ email }: { email: string; }): Promise<User> {
@@ -39,7 +43,7 @@ class UserRepository implements IUserRepository {
             relations: ['role']
         });
     }
-    
+
     async save(user: User): Promise<void> {
         await this.repository.save(user);
     }
