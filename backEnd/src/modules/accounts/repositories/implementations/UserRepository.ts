@@ -30,7 +30,10 @@ class UserRepository implements IUserRepository {
         });
     }
     async listUser(): Promise<User[]> {
-        throw new Error("Method not implemented.");
+        return await this.repository.find({
+            select: ['id', 'nick_name', 'email'],
+            relations: ['role']
+        });
     }
     async save(user: User): Promise<void> {
         await this.repository.save(user);
