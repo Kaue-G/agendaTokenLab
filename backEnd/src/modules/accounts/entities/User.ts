@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from 'uuid';
+import { Event } from "../../events/entities/Event";
 import { Role } from "./Role";
 
 @Entity('users')
@@ -23,6 +24,9 @@ class User {
     @JoinColumn({ name: 'role_id'})
     role: Role;
 
+    @OneToMany(() => Event, event => event.user)
+    events: Event[];
+    
     constructor() {
         if (!this.id) {
             this.id = uuidV4();
