@@ -8,22 +8,35 @@ class UserRepository implements IUserRepository {
     constructor() {
         this.repository = getRepository(User);
     }
+
+    async create({ nick_name, email, password, role_id }: IRequestCreateUser): Promise<void> {
+        const user = this.repository.create({
+            nick_name, email, password, role_id
+        });
+
+        this.save(user);
+    }
+    async deleteUser({ user_id }: { user_id: any; }): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+    async findUserById({ id }: { id: any; }): Promise<User> {
+        throw new Error("Method not implemented.");
+    }
+    async findUserByEmail({ email }: { email: string; }): Promise<User> {
+        return await this.repository.findOne({
+            where: {
+                email
+            }
+        });
+    }
+    async listUser(): Promise<User[]> {
+        throw new Error("Method not implemented.");
+    }
+    async save(user: User): Promise<void> {
+        await this.repository.save(user);
+    }
     
-    create({ nick_name, email, password, role_id }: IRequestCreateUser): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    deleteUser({ user_id }: { user_id: any; }): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    findProfile({ id: string }: { id: any; }): Promise<User> {
-        throw new Error("Method not implemented.");
-    }
-    listUser(): Promise<User[]> {
-        throw new Error("Method not implemented.");
-    }
-    save(user: User): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
+   
 }
 
 export { UserRepository };

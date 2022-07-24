@@ -14,7 +14,7 @@ class CreateUserController {
             password, 
             role_id 
         });
-        
+
         return response.status(201).send();
     }
 }

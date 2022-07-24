@@ -11,7 +11,9 @@ interface IUserRepository {
 
     deleteUser({ user_id }): Promise<void>;
 
-    findProfile({ id: string }): Promise<User>;
+    findUserById({ id: string }): Promise<User>;
+
+    findUserByEmail({ email: string }): Promise<User>;
 
     listUser(): Promise<User[]>;
 
