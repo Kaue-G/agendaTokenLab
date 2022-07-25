@@ -13,6 +13,8 @@ interface IEventRepository {
     findEventById({ id }: { id: string }): Promise<Event>;
     
     listEvent(): Promise<Event[]>;
+
+    save(event: Event): Promise<Event>
 }
 
 export { IEventRepository };

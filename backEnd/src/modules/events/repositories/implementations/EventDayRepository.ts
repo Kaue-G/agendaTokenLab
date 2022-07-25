@@ -24,6 +24,12 @@ class EventDayRepository implements IEventDayRepository {
         this.repository.save(dayEvent);
     }
 
+    async deleteDays(id: string): Promise<void>{
+        await this.repository.delete({
+            event_id: id
+        });
+    }
+
     async findEventExistsByDays({ user_id, start_time, end_time }: IEventFind): Promise<EventDay> {
         return await this.repository.findOne({
             relations: ['event'],
@@ -44,8 +50,12 @@ class EventDayRepository implements IEventDayRepository {
         });
     }
 
-    async listEventDay(): Promise<EventDay[]> {
-        throw new Error("Method not implemented.");
+    async listEventDay(id: string): Promise<EventDay[]> {
+        return await this.repository.find({
+            where: {
+                event_id: id,
+            }
+        });
     }
 
     async save(eventDay: EventDay): Promise<void> {

@@ -20,7 +20,7 @@ class EventRepository implements IEventRepository {
             user_id 
         });
 
-        return this.repository.save(event);        
+        return this.save(event);        
 
     }
 
@@ -29,13 +29,17 @@ class EventRepository implements IEventRepository {
     };
 
     async findEventById({ id }: { id: string; }): Promise<Event> {
-        throw new Error("Method not implemented.");
+        return this.repository.findOne(id);
     }
 
     async listEvent(): Promise<Event[]> {
         return await this.repository.find({
             relations: ['eventDays']
         });
+    }
+
+    async save(event: Event): Promise<Event>{
+        return this.repository.save(event);  
     }
 }
 

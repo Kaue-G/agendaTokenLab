@@ -9,9 +9,11 @@ interface IEventDayRepository {
         event_id,
     }: ICreateEventDay): Promise<void>;
 
+    deleteDays(id: string): Promise<void>;
+
     findEventExistsByDays({ user_id, start_time, end_time }: IEventFind): Promise<EventDay>;
 
-    listEventDay(): Promise<EventDay[]>;
+    listEventDay(id: string): Promise<EventDay[]>;
 
     save(eventDay: EventDay): Promise<void>;
 }
