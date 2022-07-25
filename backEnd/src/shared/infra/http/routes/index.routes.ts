@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { accountsRoutes } from "./accounts.routes";
-import { eventsRoutes } from "./events.router";
+import { eventsRoutes } from "./events.routes";
 
 const router = Router();
 
