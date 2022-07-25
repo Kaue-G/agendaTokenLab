@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  database:
+  databaseToken:
     image: postgres
     container_name: database_token_agenda
 
@@ -22,9 +22,9 @@ services:
     volumes:
       - .:/usr/app
     links:
-      - database
+      - databaseToken
     depends_on:
-      - database
+      - databaseToken
 
 volumes:
   pgdata:
