@@ -8,11 +8,13 @@ interface IEventRepository {
         user_id: string
     }): Promise<Event>;
 
-    findEventById({ id }: { id: string }): Promise<Event>;
+    deleteEvent({ id }: { id: string }): Promise<void>;
 
+    findEventById({ id }: { id: string }): Promise<Event>;
+    
     listEvent(): Promise<Event[]>;
 
-    save(event: Event): Promise<void>;
+    save(event: Event): Promise<Event>
 }
 
 export { IEventRepository };

@@ -8,13 +8,13 @@ class EventDay {
     id?: string;
 
     @Column()
-    start_time: string;
+    start_time: Date;
     
     @Column()
-    end_time: string;
+    end_time: Date;
     
     @Column()
-    envent_id: string;
+    event_id: string;
 
     @ManyToOne(() => Event)
     @JoinColumn({ name: 'event_id'})

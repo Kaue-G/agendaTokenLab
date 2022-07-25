@@ -15,19 +15,31 @@ class EventRepository implements IEventRepository {
         description: string; 
         user_id: string; 
     }): Promise<Event> {
-        throw new Error("Method not implemented.");
+        const event = this.repository.create({
+            description, 
+            user_id 
+        });
+
+        return this.save(event);        
+
     }
 
+    async deleteEvent({ id }: { id: string }): Promise<void>{
+        await this.repository.delete(id);
+    };
+
     async findEventById({ id }: { id: string; }): Promise<Event> {
-        throw new Error("Method not implemented.");
+        return this.repository.findOne(id);
     }
 
     async listEvent(): Promise<Event[]> {
-        return await this.repository.find();
+        return await this.repository.find({
+            relations: ['eventDays']
+        });
     }
 
-    async save(event: Event): Promise<void> {
-        throw new Error("Method not implemented.");
+    async save(event: Event): Promise<Event>{
+        return this.repository.save(event);  
     }
 }
 

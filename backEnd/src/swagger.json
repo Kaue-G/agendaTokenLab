@@ -7,5 +7,284 @@
         "contact": {
             "developed": "kauê Guedes"
         }
+    },
+    "paths": {
+        "/accounts": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a new user",
+                "description": "create a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nick_name": "string",
+                                    "email": "string",
+                                    "password": "string",
+                                    "role_id": "string"
+                                },
+                                "example": {
+                                    "nick_name": "Wayne B",
+                                    "email": "wayne@city",
+                                    "password": "wwspeed",
+                                    "role_id": "role id"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "list all user",
+                "description": "list all user",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "update user",
+                "description": "update user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": "string",
+                                    "nick_name": "string",
+                                    "email": "string",
+                                    "role_id": "string"
+                                },
+                                "example": {
+                                    "id": "user id",
+                                    "nick_name": "Wayne Wayne",
+                                    "email": "wayne123@city",
+                                    "role_id": "role id"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "delete user",
+                "description": "delete user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": "string"
+                                },
+                                "example": {
+                                    "id": "user id"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            }
+        },
+        "/accounts/changePassword": {
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "change password",
+                "description": "change password",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": "string",
+                                    "password": "string"
+                                },
+                                "example": {
+                                    "id": "user id",
+                                    "password": "new password"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "create a new event",
+                "description": "create a new event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "description": "string",
+                                    "user_id": "string",
+                                    "days": [
+                                        {
+                                            "start_time": "string",
+                                            "end_time": "string"
+                                        },
+                                        {
+                                            "start_time": "string",
+                                            "end_time": "string"
+                                        }
+                                    ]
+                                },
+                                "example": {
+                                    "description": "insert description",
+                                    "user_id": "user id",
+                                    "days": [
+                                        {
+                                            "start_time": "2022-08-25 02:14:37",
+                                            "end_time": "2022-08-25 03:14:37"
+                                        },
+                                        {
+                                            "start_time": "2022-08-26 02:14:37",
+                                            "end_time": "2022-08-26 03:14:37"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "list all event",
+                "description": "list all event",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "update event",
+                "description": "update event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "description": "string",
+                                    "event_id": "string",
+                                    "days": [
+                                        {
+                                            "start_time": "string",
+                                            "end_time": "string"
+                                        },
+                                        {
+                                            "start_time": "string",
+                                            "end_time": "string"
+                                        }
+                                    ]
+                                },
+                                "example": {
+                                    "description": "insert description",
+                                    "event_id": "event id",
+                                    "days": [
+                                        {
+                                            "start_time": "2022-08-25 02:14:37",
+                                            "end_time": "2022-08-25 03:14:37"
+                                        },
+                                        {
+                                            "start_time": "2022-08-26 02:14:37",
+                                            "end_time": "2022-08-26 03:14:37"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "delete event",
+                "description": "delete event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": "string"
+                                },
+                                "example": {
+                                    "id": "event id"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            }
+        }
     }
 }
