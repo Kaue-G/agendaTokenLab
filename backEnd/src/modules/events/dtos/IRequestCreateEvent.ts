@@ -9,4 +9,4 @@ interface IRequestCreateEvent {
     days: eventDays[];
 }
 
-export { IRequestCreateEvent };
+export { IRequestCreateEvent, eventDays };

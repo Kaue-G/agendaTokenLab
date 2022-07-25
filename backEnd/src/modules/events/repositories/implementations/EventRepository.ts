@@ -32,16 +32,10 @@ class EventRepository implements IEventRepository {
         throw new Error("Method not implemented.");
     }
 
-    async findEventByUserId({ id }: { id: string }): Promise<Event[]> {
-        return await this.repository.find({
-            where: {
-                user_id: id,
-            }
-        });
-    }
-
     async listEvent(): Promise<Event[]> {
-        return await this.repository.find();
+        return await this.repository.find({
+            relations: ['eventDays']
+        });
     }
 }
 

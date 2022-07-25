@@ -1,4 +1,5 @@
 import { ICreateEventDay } from "../dtos/ICreateEventDay";
+import { IEventFind } from "../dtos/IEventFind";
 import { EventDay } from "../entities/EventDay";
 
 interface IEventDayRepository {
@@ -8,7 +9,7 @@ interface IEventDayRepository {
         event_id,
     }: ICreateEventDay): Promise<void>;
 
-    findEventDayById({ id }: { id: string }): Promise<EventDay>;
+    findEventExistsByDays({ user_id, start_time, end_time }: IEventFind): Promise<EventDay>;
 
     listEventDay(): Promise<EventDay[]>;
 

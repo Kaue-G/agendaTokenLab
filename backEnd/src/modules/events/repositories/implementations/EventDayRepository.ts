@@ -1,5 +1,6 @@
-import { getRepository, Repository } from "typeorm";
+import { getRepository, Repository, Between } from "typeorm";
 import { ICreateEventDay } from "../../dtos/ICreateEventDay";
+import { IEventFind } from "../../dtos/IEventFind";
 import { EventDay } from "../../entities/EventDay";
 import { IEventDayRepository } from "../IEventDayRepository";
 
@@ -23,8 +24,24 @@ class EventDayRepository implements IEventDayRepository {
         this.repository.save(dayEvent);
     }
 
-    async findEventDayById({ id }: { id: string; }): Promise<EventDay> {
-        throw new Error("Method not implemented.");
+    async findEventExistsByDays({ user_id, start_time, end_time }: IEventFind): Promise<EventDay> {
+        return await this.repository.findOne({
+            relations: ['event'],
+            where: {
+                start_time: Between(
+                    start_time,
+                    end_time
+                ),
+                end_time: Between(
+                    start_time,
+                    end_time
+                ),
+                event: {
+                    user_id,
+                }
+            
+            }
+        });
     }
 
     async listEventDay(): Promise<EventDay[]> {

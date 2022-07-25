@@ -12,8 +12,6 @@ interface IEventRepository {
 
     findEventById({ id }: { id: string }): Promise<Event>;
     
-    findEventByUserId({ id }: { id: string }): Promise<Event[]>;
-
     listEvent(): Promise<Event[]>;
 }
 
