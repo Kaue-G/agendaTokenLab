@@ -20,6 +20,7 @@ class Event {
 
     @OneToMany(() => EventDay, eventDay => eventDay.event)
     eventDays: EventDay[];
+    event: Promise<EventDay[]>;
 
     constructor() {
         if (!this.id) {

@@ -1,15 +1,12 @@
+import { ICreateEventDay } from "../dtos/ICreateEventDay";
 import { EventDay } from "../entities/EventDay";
 
 interface IEventDayRepository {
     create({
         start_time, 
         end_time,
-        event 
-    }: {
-        start_time: string, 
-        end_time: string,
-        event: Event,
-    }): Promise<EventDay>;
+        event_id,
+    }: ICreateEventDay): Promise<void>;
 
     findEventDayById({ id }: { id: string }): Promise<EventDay>;
 
