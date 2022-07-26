@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { AreaEventsBar } from './style';
 
 function EventsBar(){
     return (
         <AreaEventsBar>
-            <h2>Events</h2>
+                <div>
+                    <Link to='/events'>Events</Link>
+                </div>
         </AreaEventsBar>
     );
 }

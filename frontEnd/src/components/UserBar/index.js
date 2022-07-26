@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { AreaUserBar } from './style';
 
 function UserBar(){
     return (
         <AreaUserBar>
-            <h3>?User</h3>
+            <div>
+                <Link to='/user'>User</Link>
+            </div>
         </AreaUserBar>
     );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import EventsBar from "../EventsBar";
 import UserBar from "../UserBar";
-import { AreaSideBar } from './style';
+import { AreaSideBar } from './styled';
 
 function SideBar(){
     return (

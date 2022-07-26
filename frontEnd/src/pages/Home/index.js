@@ -1,10 +1,10 @@
 import React from "react";
 import SideBar from "../../components/SideBar";
 
-export function Users() {
+
+export function Home() {
     return (
-        <>
-            <SideBar />
-        </>
+        <SideBar>
+        </SideBar>
     );
 };

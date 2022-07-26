@@ -7,10 +7,14 @@ import createConnection from '../typeorm';
 import swaggerFile from '../../../swagger.json';
 import { router } from "./routes/index.routes";
 import { AppError } from "../../errors/AppError";
+import cors from 'cors';
+
 
 createConnection();
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
