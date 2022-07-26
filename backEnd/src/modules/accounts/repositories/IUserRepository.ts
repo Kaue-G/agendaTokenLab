@@ -15,6 +15,8 @@ interface IUserRepository {
 
     findUserByEmail({ email: string }): Promise<User>;
 
+    findUserNickName({ nick_name }: { nick_name: string}): Promise<User>;
+
     listUser(): Promise<User[]>;
 
     save(user: User): Promise<void>;

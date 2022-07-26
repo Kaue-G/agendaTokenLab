@@ -116,6 +116,37 @@
                 }
             }
         },
+        "/accounts/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "login",
+                "description": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nick_name": "string",
+                                    "password": "string"
+                                },
+                                "example": {
+                                    "nick_name": "Wayne B",
+                                    "password": "wwspeed"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucess"
+                    }
+                }
+            }
+        },
         "/accounts/changePassword": {
             "patch": {
                 "tags": [

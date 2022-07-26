@@ -37,6 +37,14 @@ class UserRepository implements IUserRepository {
         });
     }
 
+    async findUserNickName({ nick_name }: { nick_name: string }): Promise<User> {
+        return await this.repository.findOne({
+            where: {
+                nick_name
+            }
+        });
+    }
+
     async listUser(): Promise<User[]> {
         return await this.repository.find({
             select: ['id', 'nick_name', 'email'],
