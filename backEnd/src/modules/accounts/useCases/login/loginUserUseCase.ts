@@ -16,7 +16,6 @@ class LoginUserUseCase {
         password,
     }: IRequestCreateUser): Promise<ILogin> {
         const user = await this.userRepository.findUserNickName({ nick_name });
-console.log(user);
 
         if(user){
             if(user.password !== password){
