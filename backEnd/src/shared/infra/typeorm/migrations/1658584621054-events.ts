@@ -20,6 +20,11 @@ export class events1658584621054 implements MigrationInterface {
                     {
                         name: 'user_id',
                         type: 'uuid',
+                    },
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default: "now()",
                     }
                 ],
                 foreignKeys: [
