@@ -1,8 +1,16 @@
+import { compare } from "bcrypt";
+import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
 import { IAuthenticateUser } from "../../dtos/IAuthenticateUser";
-import { IRequestCreateUser } from "../../dtos/IRequestCreateUser";
+import { User } from "../../entities/User";
 import { IUserRepository } from "../../repositories/IUserRepository";
+import authentication from "../../../../../config/authentication";
+
+interface IRequest {
+    nickOrEmail: string;
+    password: string;
+}
 
 @injectable()
 class AuthenticateUserUseCase {
@@ -12,24 +20,46 @@ class AuthenticateUserUseCase {
     ) {}
 
     async execute({
-        nick_name,
+        nickOrEmail,
         password,
-    }: IRequestCreateUser): Promise<IAuthenticateUser> {
-        const user = await this.userRepository.findUserNickName({ nick_name });
+    }: IRequest): Promise<IAuthenticateUser> {
 
-        if(user){
-            if(user.password !== password){
-                throw new AppError('Senha incorreta', 400);
-            }
+        const user = await this.userAlreadyExists(nickOrEmail);
 
-            return {
-                id: user.id,
-                nick_name: user.nick_name,
-                role_id: user.role_id
-            };
+        if (!user) {
+            throw new AppError('Incorrect nickname/email or password');
         }
 
-        throw new AppError('Usuário não encontrado', 400);
+        const passwordMatch = await compare(password, user.password);
+
+        if (!passwordMatch) {
+            throw new AppError('Incorrect nickname/email or password', 400);
+        }
+
+        const { secret_token, expires_in_token } = authentication;
+
+        const token = sign({}, secret_token, {
+            subject: user.id,
+            expiresIn: expires_in_token,
+        });
+
+        return {
+            user: {
+                nick_name: user.nick_name,
+                email: user.email,
+            },
+            token
+        };
+    }
+
+    async userAlreadyExists(nickOrEmail: string): Promise<User> {
+        const user = await this.userRepository.findUserNickName({ nick_name: nickOrEmail });
+
+        if (user) {
+            return user;
+        }
+
+        return await this.userRepository.findUserByEmail({ email: nickOrEmail });
     }
 }
 

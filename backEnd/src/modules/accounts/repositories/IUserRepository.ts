@@ -13,7 +13,7 @@ interface IUserRepository {
 
     findUserById({ id }: { id: string }): Promise<User>;
 
-    findUserByEmail({ email: string }): Promise<User>;
+    findUserByEmail({ email }: { email: string }): Promise<User>;
 
     findUserNickName({ nick_name }: { nick_name: string}): Promise<User>;
 

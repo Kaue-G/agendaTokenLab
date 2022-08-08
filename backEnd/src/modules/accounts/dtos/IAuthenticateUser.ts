@@ -1,7 +1,9 @@
 interface IAuthenticateUser {
-    id: string;
-    nick_name: string;
-    role_id: string;
+    user: {
+        nick_name: string,
+        email: string
+    },
+    token: string;
 }
 
 export { IAuthenticateUser };
