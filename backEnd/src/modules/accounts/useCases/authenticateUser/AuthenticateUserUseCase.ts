@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
-import { ILogin } from "../../dtos/ILogin";
+import { IAuthenticateUser } from "../../dtos/IAuthenticateUser";
 import { IRequestCreateUser } from "../../dtos/IRequestCreateUser";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
 @injectable()
-class LoginUserUseCase {
+class AuthenticateUserUseCase {
     constructor(
         @inject('UserRepository')
         private userRepository: IUserRepository,
@@ -14,7 +14,7 @@ class LoginUserUseCase {
     async execute({
         nick_name,
         password,
-    }: IRequestCreateUser): Promise<ILogin> {
+    }: IRequestCreateUser): Promise<IAuthenticateUser> {
         const user = await this.userRepository.findUserNickName({ nick_name });
 
         if(user){
@@ -33,4 +33,4 @@ class LoginUserUseCase {
     }
 }
 
-export { LoginUserUseCase };
+export { AuthenticateUserUseCase };

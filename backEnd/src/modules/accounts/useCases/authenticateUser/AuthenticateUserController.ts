@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { LoginUserUseCase } from './loginUserUseCase';
+import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
-class LoginUserController {
+class AuthenticateUserController {
     async handle(request: Request, response: Response): Promise<Response> {
         const { nick_name, password} = request.body;
 
-        const loginUserUseCase = container.resolve(LoginUserUseCase);
+        const authenticateUserUseCase = container.resolve(AuthenticateUserUseCase);
 
         return response.json(
-            await loginUserUseCase.execute({
+            await authenticateUserUseCase.execute({
                 nick_name,
                 password,
             })
@@ -17,4 +17,4 @@ class LoginUserController {
     }
 }
 
-export { LoginUserController };
+export { AuthenticateUserController };
