@@ -8,11 +8,25 @@
             "developed": "kauê Guedes"
         }
     },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
     "paths": {
         "/accounts": {
             "post": {
                 "tags": [
                     "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
                 ],
                 "summary": "Create a new user",
                 "description": "create a new user",
@@ -47,6 +61,11 @@
                 "tags": [
                     "User"
                 ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "summary": "list all user",
                 "description": "list all user",
                 "responses": {
@@ -58,6 +77,11 @@
             "put": {
                 "tags": [
                     "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
                 ],
                 "summary": "update user",
                 "description": "update user",
@@ -91,6 +115,11 @@
             "delete": {
                 "tags": [
                     "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
                 ],
                 "summary": "delete user",
                 "description": "delete user",
@@ -142,7 +171,10 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Sucess"
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Incorrect nickname/email or password"
                     }
                 }
             }
@@ -151,6 +183,11 @@
             "patch": {
                 "tags": [
                     "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
                 ],
                 "summary": "change password",
                 "description": "change password",
@@ -183,6 +220,11 @@
                 "tags": [
                     "Event"
                 ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "summary": "create a new event",
                 "description": "create a new event",
                 "requestBody": {
@@ -192,7 +234,6 @@
                                 "type": "object",
                                 "properties": {
                                     "description": "string",
-                                    "user_id": "string",
                                     "days": [
                                         {
                                             "start_time": "string",
@@ -206,7 +247,6 @@
                                 },
                                 "example": {
                                     "description": "insert description",
-                                    "user_id": "user id",
                                     "days": [
                                         {
                                             "start_time": "2022-08-25 02:14:37",
@@ -232,6 +272,11 @@
                 "tags": [
                     "Event"
                 ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "summary": "list all event",
                 "description": "list all event",
                 "responses": {
@@ -243,6 +288,11 @@
             "put": {
                 "tags": [
                     "Event"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
                 ],
                 "summary": "update event",
                 "description": "update event",
@@ -293,6 +343,11 @@
                 "tags": [
                     "Event"
                 ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "summary": "delete event",
                 "description": "delete event",
                 "requestBody": {
@@ -317,5 +372,8 @@
                 }
             }
         }
+    },
+    "definitions": {
+
     }
 }
