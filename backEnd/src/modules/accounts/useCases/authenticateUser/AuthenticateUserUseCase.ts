@@ -33,7 +33,7 @@ class AuthenticateUserUseCase {
         const passwordMatch = await compare(password, user.password);
 
         if (!passwordMatch) {
-            throw new AppError('Incorrect nickname/email or password', 400);
+            throw new AppError('Incorrect nickname/email or password');
         }
 
         const { secret_token, expires_in_token } = authentication;
