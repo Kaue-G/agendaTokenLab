@@ -11,15 +11,17 @@ export class users1658584614847 implements MigrationInterface {
                         name: 'id',
                         type: 'uuid',
                         isPrimary: true,
-                        generationStrategy: 'uuid'
+                        generationStrategy: 'uuid',
                     },
                     {
                         name: 'nick_name',
                         type: 'varchar',
+                        isUnique: true,
                     },
                     {
                         name: 'email',
                         type: 'varchar',
+                        isUnique: true,
                     },
                     {
                         name: 'password',
@@ -29,6 +31,11 @@ export class users1658584614847 implements MigrationInterface {
                         name: 'role_id',
                         type: 'uuid',
                     },
+                    {
+                        name:  "created_at",
+                        type: "timestamp",
+                        default: "now()",
+                    }
                 ],
                 foreignKeys: [
                     {

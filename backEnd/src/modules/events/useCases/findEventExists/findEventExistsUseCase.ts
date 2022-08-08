@@ -4,7 +4,7 @@ import { EventDay } from "../../entities/EventDay";
 import { IEventDayRepository } from "../../repositories/IEventDayRepository";
 
 @injectable()
-class FindEventExists {
+class FindEventExistsUseCase {
     constructor(
         @inject('EventDayRepository')
         private eventRepository: IEventDayRepository,
@@ -23,4 +23,4 @@ class FindEventExists {
     }
 }
 
-export { FindEventExists };
+export { FindEventExistsUseCase };

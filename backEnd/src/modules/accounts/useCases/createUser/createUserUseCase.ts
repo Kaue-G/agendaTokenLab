@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
 import { IRequestCreateUser } from "../../dtos/IRequestCreateUser";
 import { IUserRepository } from "../../repositories/IUserRepository";
+import { hash } from "bcrypt";
 
 @injectable()
 class CreateUserUseCase {
@@ -16,19 +17,20 @@ class CreateUserUseCase {
         password,
         role_id
     }: IRequestCreateUser): Promise<void> {
-        const userExists = await this.userRepository.findUserByEmail({ email });
+        const userAlreadyExists = await this.userRepository.findUserByEmail({ email });
 
-        if (!userExists) {
-            await this.userRepository.create({
-                nick_name, 
-                email, 
-                password, 
-                role_id
-            });
-        } else {
+        if (userAlreadyExists) {
             throw new AppError("Email already registered")
         }
 
+        const passwordHash = await hash(password, 8);
+
+        await this.userRepository.create({
+            nick_name,
+            email,
+            password: passwordHash,
+            role_id
+        });
     }
 }
 

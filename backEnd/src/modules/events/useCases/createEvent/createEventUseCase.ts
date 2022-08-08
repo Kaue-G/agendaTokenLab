@@ -3,7 +3,7 @@ import { AppError } from "../../../../shared/errors/AppError";
 import { IRequestCreateEvent } from "../../dtos/IRequestCreateEvent";
 import { IEventRepository } from "../../repositories/IEventRepository";
 import { CreateEventDaysUseCase } from "../createEventDaysUseCase/createEventDaysUseCase";
-import { FindEventExists } from "../findEventExists/findEventExists";
+import { FindEventExistsUseCase } from "../findEventExists/findEventExistsUseCase";
 
 @injectable()
 class CreateEventUseCase {
@@ -18,7 +18,7 @@ class CreateEventUseCase {
         days,
     }: IRequestCreateEvent): Promise<void> {
 
-        const findEventByDays = container.resolve(FindEventExists);
+        const findEventByDays = container.resolve(FindEventExistsUseCase);
 
         const eventExists = await findEventByDays.execute({ user_id, days});
 
@@ -42,7 +42,6 @@ class CreateEventUseCase {
                 })
             );
         }
-        
     }
 }
 

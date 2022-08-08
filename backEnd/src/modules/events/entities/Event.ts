@@ -14,6 +14,9 @@ class Event {
     @Column()
     user_id: string;
 
+    @Column()
+    created_at: Date;
+    
     @ManyToOne(() => User)
     @JoinColumn({ name: 'user_id'})
     user: User;
