@@ -19,6 +19,9 @@ class User {
 
     @Column()
     role_id: string;
+    
+    @Column()
+    created_at: Date;
 
     @ManyToOne(() => Role)
     @JoinColumn({ name: 'role_id'})
